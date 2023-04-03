@@ -55,6 +55,14 @@ class TaskDeleteView(generic.DeleteView):
     success_url = reverse_lazy("manager:task-list")
 
 
+def done_undone(request, pk):
+    context = {}
+    car = Task.objects.get(id=pk)
+    car.done = not car.done
+    html_template = loader.get_template("todo/task_list.html")
+    return HttpResponse(html_template.render(context, request))
+
+
 def pages(request):
     context = {}
     html_template = loader.get_template("todo/page-404.html")
