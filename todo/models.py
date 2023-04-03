@@ -1,3 +1,20 @@
 from django.db import models
+from django.utils import timezone
 
-# Create your models here.
+
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class Task(models.Model):
+    content = models.TextField(null=True)
+    created_at = models.DateField(default=timezone.now)
+    deadline = models.DateField(null=True, blank=True)
+    done = models.BooleanField(default=False)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ["done", "created_at"]
