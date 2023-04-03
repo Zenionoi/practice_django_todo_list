@@ -20,6 +20,7 @@ class TagListView(generic.ListView):
 
 class TagCreateView(generic.CreateView):
     model = Tag
+    fields = "__all__"
     success_url = reverse_lazy("todo:tag-list")
 
 
@@ -56,5 +57,5 @@ class TaskDeleteView(generic.DeleteView):
 
 def pages(request):
     context = {}
-    html_template = loader.get_template('home/page-404.html')
+    html_template = loader.get_template("home/page-404.html")
     return HttpResponse(html_template.render(context, request))
