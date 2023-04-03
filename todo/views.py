@@ -57,5 +57,5 @@ class TaskDeleteView(generic.DeleteView):
 
 def pages(request):
     context = {}
-    html_template = loader.get_template("home/page-404.html")
+    html_template = loader.get_template("todo/page-404.html")
     return HttpResponse(html_template.render(context, request))
